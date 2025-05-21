@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>멋진 슬라이드 쇼</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- 참고: Tailwind CDN은 프로덕션 환경에서 권장되지 않습니다. -->
+  <!-- 실제 서비스 배포 시 https://tailwindcss.com/docs/installation 참고 -->
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+  <style>
+    /* 슬라이드 기본 높이 설정 (모바일 고려하여 약간 줄임) */
+    .swiper-slide {
+      height: 250px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 1.5rem;
+    }
+    /* 화면이 작을 때 텍스트 크기 조절 */
+    @media (max-width: 640px) {
+      .swiper-slide h2 {
+        font-size: 1.875rem;
+        margin-bottom: 0.75rem;
+      }
+      .swiper-slide p {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+      }
+      .swiper-slide button {
+        font-size: 0.875rem;
+        padding: 0.5rem 1rem;
+      }
+      .swiper-slide .text-6xl { font-size: 3rem; }
+      .swiper-slide .text-4xl { font-size: 2.25rem; }
+      .swiper-slide .text-3xl { font-size: 1.875rem; }
+      .swiper-slide .text-2xl { font-size: 1.5rem; }
+      .swiper-slide svg.w-12 { width: 2.5rem; height: 2.5rem; }
+    }
+  </style>
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+</head>
+<body class="bg-gradient-to-br from-blue-100 to-purple-200 min-h-screen">
+  <!-- 접근성 모드 안내 메시지 (초기에는 숨김) -->
+  <div id="a11y-status-banner" style="display:none" class="fixed top-0 left-0 w-full bg-yellow-400 text-black text-center font-semibold py-2 z-50 shadow-md">
+    <span id="a11y-status-text">접근성 모드(VoiceOver/TalkBack)가 활성화되었습니다. 자동 재생이 중지됩니다.</span>
+  </div>
+  <!-- 헤더 -->
+  <header class="sticky top-0 z-10 bg-blue-600 text-white p-4 shadow-md">
+    <div class="max-w-4xl mx-auto flex items-center justify-between">
+      <h1 class="text-xl sm:text-2xl font-bold">멋진 슬라이드 쇼</h1>
+      <nav class="hidden sm:block">
+        <ul class="flex space-x-6">
+          <li><a href="#" class="hover:underline">홈</a></li>
+          <li><a href="#" class="hover:underline">소개</a></li>
+          <li><a href="#" class="hover:underline">연락처</a></li>
+        </ul>
+      </nav>
+      <!-- 모바일 햄버거 메뉴 (토글 기능 없음) -->
+      <button class="sm:hidden focus:outline-none" aria-label="메뉴">
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- 헤더 높이만큼 마진 추가 -->
+  <div class="mt-5"></div>
+
+  <!-- 슬라이드 쇼 컨테이너 -->
+  <div class="max-w-4xl mx-auto mt-5">
+    <div class="swiper mySwiper rounded-lg overflow-hidden shadow-lg">
+      <div class="swiper-wrapper">
+        <!-- Slide 1 -->
+        <div class="swiper-slide bg-gradient-to-r from-indigo-400 to-blue-400 text-white flex flex-col items-center justify-center">
+          <h2 class="text-3xl font-bold mb-2">환영합니다!</h2>
+          <p class="mb-4">이것은 아름다운 그라디언트 배경을 가진 첫 번째 슬라이드입니다.</p>
+          <button class="bg-white text-blue-600 font-semibold px-6 py-2 rounded shadow hover:bg-blue-50 transition">클릭하세요</button>
+        </div>
+        <!-- Slide 2 -->
+        <div class="swiper-slide bg-white flex flex-col sm:flex-row items-center justify-center text-gray-800">
+          <div class="mb-4 sm:mb-0 sm:mr-8 flex-shrink-0">
+            <svg class="w-12 h-12 text-yellow-400 mx-auto" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+          </div>
+          <div>
+            <h2 class="text-2xl font-bold mb-1">빠른 성능</h2>
+            <p class="mb-3">번개처럼 빠른 속도를 경험하세요.</p>
+            <button class="bg-blue-600 text-white font-semibold px-4 py-2 rounded hover:bg-blue-700 transition">더 알아보기</button>
+          </div>
+        </div>
+        <!-- Slide 3 -->
+        <div class="swiper-slide bg-gradient-to-r from-pink-400 to-red-400 text-white flex flex-col items-center justify-center">
+          <h2 class="text-4xl font-bold mb-2">"혁신은 리더와 추종자를 구분합니다."</h2>
+          <button class="bg-white text-pink-600 font-semibold px-6 py-2 rounded shadow hover:bg-pink-50 transition">메시지 보기</button>
+        </div>
+        <!-- Slide 4 -->
+        <div class="swiper-slide bg-white flex flex-col items-center justify-center text-blue-700">
+          <div class="text-6xl font-extrabold mb-2">99%</div>
+          <div class="text-lg mb-3">업타임 보장</div>
+          <button class="bg-blue-600 text-white font-semibold px-4 py-2 rounded hover:bg-blue-700 transition">세부 정보</button>
+        </div>
+        <!-- Slide 5 -->
+        <div class="swiper-slide bg-gradient-to-r from-green-400 to-teal-400 text-white flex flex-col items-center justify-center">
+          <h2 class="text-2xl font-bold mb-2">지금 시작하세요!</h2>
+          <button class="bg-white text-green-600 font-semibold px-6 py-2 rounded shadow hover:bg-green-50 transition">시작하기</button>
+        </div>
+      </div>
+      <!-- Swiper Pagination & Navigation -->
+      <div class="swiper-pagination"></div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
+  </div>
+  <script>
+    var swiper = new Swiper(".mySwiper", {
+      loop: true,
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+      a11y: {
+        enabled: true,
+        prevSlideMessage: '이전 슬라이드',
+        nextSlideMessage: '다음 슬라이드',
+        firstSlideMessage: '첫 번째 슬라이드',
+        lastSlideMessage: '마지막 슬라이드',
+        paginationBulletMessage: '슬라이드 {{index}}번으로 이동',
+      },
+    });
+
+    // Swiper 인스턴스 준비 확인 (전역)
+    function isSwiperReady() {
+      return typeof swiper !== 'undefined' && swiper.autoplay && typeof swiper.autoplay.stop === 'function';
+    }
+    // 안내 배너 표시 함수 (전역)
+    function showA11yBanner(show, msg) {
+      var el = document.getElementById('a11y-status-banner');
+      var textEl = document.getElementById('a11y-status-text');
+      if (!el || !textEl) return;
+      if (typeof msg === 'string' && msg.length > 0) {
+        textEl.textContent = msg;
+      }
+      el.style.display = show ? 'block' : 'none';
+    }
+
+    // 접근성: 활성 슬라이드 외에는 inert 속성 적용
+    function updateInertOnSlides() {
+      var slides = document.querySelectorAll('.swiper-slide');
+      slides.forEach(function(slide) {
+        if (slide.classList.contains('swiper-slide-active')) {
+          slide.removeAttribute('inert');
+        } else {
+          slide.setAttribute('inert', '');
+        }
+      });
+    }
+    // 초기 적용
+    updateInertOnSlides();
+    // 슬라이드 변경 시 inert 갱신
+    swiper.on('slideChange', updateInertOnSlides);
+
+    // ====== [웹 브릿지: 접근성 상태에 따라 슬라이드 자동재생 제어] ======
+    (function() {
+      // 글로벌 콜백 정의
+      window.onAccessibilityStatusChanged = function(status) {
+        var enabled = false;
+        if (status && (status.voiceOver || status.talkBack)) {
+          enabled = true;
+        }
+        if (!isSwiperReady()) {
+          showA11yBanner(false);
+          return;
+        }
+        if (enabled) {
+          swiper.autoplay.stop();
+          showA11yBanner(true, status.talkBack ? '톡백이 감지되었습니다. 자동 재생이 중지됩니다.' : 'VoiceOver가 감지되었습니다. 자동 재생이 중지됩니다.');
+        } else {
+          swiper.autoplay.start();
+          showA11yBanner(false);
+        }
+      };
+    })();
+
+    // ====== [리듀스드 모션: prefers-reduced-motion 감지 및 자동재생 제어] ======
+    (function() {
+      var reducedMotionMedia = window.matchMedia('(prefers-reduced-motion: reduce)');
+      function handleReducedMotionChange(e) {
+        if (!isSwiperReady()) return;
+        if (e.matches) {
+          swiper.autoplay.stop();
+          showA11yBanner(true, '리듀스드 모션이 감지되었습니다. 자동 재생이 중지됩니다.');
+        } else {
+          swiper.autoplay.start();
+          showA11yBanner(false);
+        }
+      }
+      // 최초 상태 반영
+      handleReducedMotionChange(reducedMotionMedia);
+      // 변경 이벤트 감지
+      if (reducedMotionMedia.addEventListener) {
+        reducedMotionMedia.addEventListener('change', handleReducedMotionChange);
+      } else if (reducedMotionMedia.addListener) { // 구형 브라우저 대응
+        reducedMotionMedia.addListener(handleReducedMotionChange);
+      }
+    })();
+  </script>
+</body>
+</html>
